@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: mau-r/pythonkatta
+  IMAGE_NAME: maurrr/pythonkatta
 
 jobs:
   build-and-deploy:
