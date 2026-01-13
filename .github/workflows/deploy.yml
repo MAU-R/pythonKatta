@@ -40,13 +40,8 @@ jobs:
             ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
             ghcr.io/${{ env.IMAGE_NAME }}:latest
 
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v4
-
-      - name: Set kubeconfig
-        run: |
-          mkdir -p $HOME/.kube
-          echo "${{ secrets.KUBECONFIG_DATA }}" > $HOME/.kube/config
+      - name: Create Kubernetes cluster (Kind)
+        uses: helm/kind-action@v1.10.0
 
       - name: Deploy with Helm
         run: |
