@@ -13,7 +13,7 @@ def version():
     return {
         "version": os.getenv("APP_VERSION", "dev"),
         "client": os.getenv("CLIENT_NAME", "local"),
-        "status": "deployed-from-ci"
+        "status": "deployed-from-ci auto"
     }
 
 @app.post("/kata/one/add")
