@@ -45,12 +45,13 @@ jobs:
 
       - name: Set kubeconfig
         run: |
-          echo "${{ secrets.KUBECONFIG_DATA }}" > kubeconfig
-          export KUBECONFIG=$PWD/kubeconfig
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG_DATA }}" > $HOME/.kube/config
 
       - name: Deploy with Helm
         run: |
           helm upgrade --install client-a katas-chart \
             --namespace client-a \
-            --set image.repository=ghcr.io/mau-r/pythonkatta \
+            --create-namespace \
+            --set image.repository=ghcr.io/maurrr/pythonkatta \
             --set image.tag=${{ github.sha }}
