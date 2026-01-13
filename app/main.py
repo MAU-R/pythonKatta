@@ -12,7 +12,8 @@ def health():
 def version():
     return {
         "version": os.getenv("APP_VERSION", "dev"),
-        "client": os.getenv("CLIENT_NAME", "local")
+        "client": os.getenv("CLIENT_NAME", "local"),
+        "status": "deployed-from-ci"
     }
 
 @app.post("/kata/one/add")
