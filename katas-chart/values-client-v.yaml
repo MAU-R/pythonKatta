@@ -1,0 +1,9 @@
+replicas: 1
+
+image:
+  repository: katas-app
+  tag: v1.0
+
+app:
+  version: v1.0
+  client: client-b
