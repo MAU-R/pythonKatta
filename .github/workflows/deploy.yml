@@ -39,3 +39,18 @@ jobs:
           tags: |
             ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
             ghcr.io/${{ env.IMAGE_NAME }}:latest
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Set kubeconfig
+        run: |
+          echo "${{ secrets.KUBECONFIG_DATA }}" > kubeconfig
+          export KUBECONFIG=$PWD/kubeconfig
+
+      - name: Deploy with Helm
+        run: |
+          helm upgrade --install client-a katas-chart \
+            --namespace client-a \
+            --set image.repository=ghcr.io/mau-r/pythonkatta \
+            --set image.tag=${{ github.sha }}
