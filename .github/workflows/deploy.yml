@@ -11,7 +11,7 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: maurrr/pythonkatta
+  IMAGE_NAME: mau-r/pythonkatta
 
 jobs:
   build-and-deploy:
@@ -29,7 +29,7 @@ jobs:
         with:
           registry: ghcr.io
           username: maurrr
-          password: ${{ secrets.GHCR_PAT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
