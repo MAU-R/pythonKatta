@@ -11,7 +11,8 @@ permissions:
   id-token: write
 
 env:
-  IMAGE_NAME: ghcr.io/mau-r/pythonkatta
+  REGISTRY: ghcr.io
+  IMAGE_NAME: mau-r/pythonkatta
   CLUSTER_NAME: pythonkatta-cluster
   CLUSTER_ZONE: us-central1
   PROJECT_ID: katta-484223
