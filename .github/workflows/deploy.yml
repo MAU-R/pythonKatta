@@ -16,7 +16,7 @@ env:
   CLUSTER_NAME: pythonkatta-cluster
   CLUSTER_ZONE: us-central1
   PROJECT_ID: katta-484223
-  IMAGE_TAG: ${{ github.ref_name }}
+  IMAGE_TAG: ${{ github.sha  }}
 
 jobs:
   deploy:
@@ -71,5 +71,5 @@ jobs:
               --namespace $client \
               --create-namespace \
               --set image.repository=ghcr.io/mau-r/pythonkatta \
-              --set image.tag=latest
+              --set image.tag=${IMAGE_TAG} \
           done
