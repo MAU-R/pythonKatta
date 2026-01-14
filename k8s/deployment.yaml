@@ -12,6 +12,8 @@ spec:
       labels:
         app: katas-app
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: katas-app
           image: katas-app:v1.0
