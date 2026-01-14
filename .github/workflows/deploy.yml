@@ -49,7 +49,7 @@ jobs:
       - name: Get GKE credentials
         run: |
           gcloud container clusters get-credentials pythonkatta-cluster \
-            --zone us-central1-b \
+            --zone us-central1 \
             --project katta-484223
 
       - name: Test cluster access
