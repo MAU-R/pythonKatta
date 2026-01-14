@@ -11,6 +11,7 @@ permissions:
 
 env:
   IMAGE_NAME: ghcr.io/mau-r/pythonkatta
+  USE_GKE_GCLOUD_AUTH_PLUGIN: "True"
 
 jobs:
   build:
