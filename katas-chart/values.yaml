@@ -5,5 +5,5 @@ image:
   tag: latest
 
 app:
-  version: v1.0
-  client: client-a
+  version: dev
+  client: default

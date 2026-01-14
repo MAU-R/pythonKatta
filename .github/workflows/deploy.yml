@@ -2,8 +2,8 @@ name: Build & Deploy to GKE
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
 
 permissions:
   contents: read
@@ -16,6 +16,7 @@ env:
   CLUSTER_NAME: pythonkatta-cluster
   CLUSTER_ZONE: us-central1
   PROJECT_ID: katta-484223
+  IMAGE_TAG: ${{ github.ref_name }}
 
 jobs:
   deploy:
@@ -68,4 +69,4 @@ jobs:
             --namespace client-a \
             --create-namespace \
             --set image.repository=ghcr.io/${{ env.IMAGE_NAME }} \
-            --set image.tag=${{ github.sha }}
+            --set image.tag=${{ env.IMAGE_TAG }}

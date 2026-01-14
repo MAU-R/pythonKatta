@@ -20,7 +20,7 @@ spec:
           ports:
             - containerPort: 8000
           env:
-            - name: FIRST_VERSION
+            - name: APP_VERSION
               value: "v1.0"
-            - name: FIRST_CLIENT
+            - name: CLIENT_NAME
               value: "client-a"
