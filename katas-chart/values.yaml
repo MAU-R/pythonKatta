@@ -1,9 +1,9 @@
 replicas: 1
 
 image:
-  repository: katas-app
-  tag: v1.0
+  repository: ghcr.io/mau-r/pythonkatta
+  tag: latest
 
 app:
   version: v1.0
-  client: default
+  client: client-a

@@ -22,3 +22,6 @@ spec:
               value: "{{ .Values.app.version }}"
             - name: CLIENT_NAME
               value: "{{ .Values.app.client }}"
+      imagePullSecrets:
+        - name: ghcr-secret
+ 
