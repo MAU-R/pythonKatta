@@ -35,3 +35,24 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
             ${{ env.IMAGE_NAME }}:latest
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: katta-484223
+
+      - name: Get GKE credentials
+        run: |
+          gcloud container clusters get-credentials pythonkatta-cluster \
+            --zone us-central1-b \
+            --project katta-484223
+
+      - name: Test cluster access
+        run: |
+          kubectl get nodes
+          kubectl get ns
