@@ -19,9 +19,9 @@ spec:
             - containerPort: 8000
           env:
             - name: APP_VERSION
-              value: "{{ .Values.app.version }}"
+              value: "{{ .Values.image.tag }}"
             - name: CLIENT_NAME
-              value: "{{ .Values.app.client }}"
+              value: "{{ .Release.Name }}"
       imagePullSecrets:
         - name: ghcr-secret
  
