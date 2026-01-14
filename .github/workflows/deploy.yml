@@ -68,6 +68,7 @@ jobs:
             echo "Deploying to $client"
             helm upgrade --install $client ./katas-chart \
               --namespace $client \
-              --set image.repository=ghcr.io/${{ env.IMAGE_NAME }} \
-              --set image.tag=${{ github.ref_name }}
+              --create-namespace \
+              --set image.repository=ghcr.io/mau-r/pythonkatta \
+              --set image.tag=v1.0.5
           done
