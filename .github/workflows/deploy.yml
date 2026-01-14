@@ -11,31 +11,17 @@ permissions:
 
 env:
   IMAGE_NAME: ghcr.io/mau-r/pythonkatta
-  USE_GKE_GCLOUD_AUTH_PLUGIN: "True"
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
+    env:
+      USE_GKE_GCLOUD_AUTH_PLUGIN: "True"
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Login to GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build & Push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: |
-            ${{ env.IMAGE_NAME }}:${{ github.sha }}
-            ${{ env.IMAGE_NAME }}:latest
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
@@ -50,7 +36,7 @@ jobs:
       - name: Get GKE credentials
         run: |
           gcloud container clusters get-credentials pythonkatta-cluster \
-            --zone us-central1 \
+            --zone us-central1-a \
             --project katta-484223
 
       - name: Test cluster access
