@@ -65,8 +65,10 @@ jobs:
 
       - name: Deploy with Helm
         run: |
-          helm upgrade --install client-a ./katas-chart \
-            --namespace client-a \
-            --create-namespace \
-            --set image.repository=ghcr.io/${{ env.IMAGE_NAME }} \
-            --set image.tag=${{ env.IMAGE_TAG }}
+          for client in $(cat .github/clients.txt); do
+            echo "Deploying to $client"
+            helm upgrade --install $client ./katas-chart \
+              --namespace $client \
+              --set image.repository=ghcr.io/${{ env.IMAGE_NAME }} \
+              --set image.tag=${{ github.ref_name }}
+          done
