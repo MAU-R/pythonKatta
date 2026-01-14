@@ -1,4 +1,2 @@
 client-a
 client-v
-client-c
-client-x
