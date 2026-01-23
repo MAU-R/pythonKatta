@@ -71,5 +71,5 @@ jobs:
               --namespace $client \
               --create-namespace \
               --set image.repository=ghcr.io/mau-r/pythonkatta \
-              --set image.tag=${IMAGE_TAG} \
+              --set image.tag=${IMAGE_TAG} 
           done
